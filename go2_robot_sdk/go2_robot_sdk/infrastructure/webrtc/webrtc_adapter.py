@@ -122,21 +122,25 @@ class WebRTCAdapter(IRobotDataReceiver, IRobotController):
     def send_movement_command(self, robot_id: str, x: float, y: float, z: float) -> None:
         """Send movement command to robot"""
         try:
-            command = gen_mov_command(
-                round(x, 2), 
-                round(y, 2), 
-                round(z, 2), 
-                self.config.obstacle_avoidance
-            )
-            self.send_command(robot_id, command)
+            if x != 0.0 or y != 0.0 or z != 0.0:
+                command = gen_mov_command(
+                    round(x, 2), 
+                    round(y, 2), 
+                    round(z, 2), 
+                    self.config.obstacle_avoidance
+                )
+                self.send_command(robot_id, command)
+            else:
+                stop_cmd = gen_command(ROBOT_CMD['StopMove'])
+                self.send_command(robot_id, stop_cmd)
         except Exception as e:
             logger.error(f"Error sending movement command: {e}")
 
     def send_stand_up_command(self, robot_id: str) -> None:
         """Send stand up command"""
         try:
-            stand_up_cmd = gen_command(ROBOT_CMD["StandUp"])
-            self.send_command(robot_id, stand_up_cmd)
+            #stand_up_cmd = gen_command(ROBOT_CMD["StandUp"])
+            #self.send_command(robot_id, stand_up_cmd)
             
             move_cmd = gen_command(ROBOT_CMD['BalanceStand'])
             self.send_command(robot_id, move_cmd)

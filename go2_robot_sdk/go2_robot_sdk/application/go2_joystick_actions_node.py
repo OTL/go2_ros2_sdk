@@ -116,7 +116,7 @@ class Go2JoystickActionsNode(Node):
                 if parameter_override is not None and len(command_names) == 1:
                     parameter = parameter_override
                 else:
-                    parameter = str(api_id)
+                    parameter = ''
 
             steps.append(
                 CommandStep(
@@ -217,7 +217,7 @@ class Go2JoystickActionsNode(Node):
         msg = WebRtcReq()
         msg.id = 0
         msg.api_id = step.api_id
-        msg.parameter = step.parameter
+        #msg.parameter = step.parameter
         msg.topic = step.topic
         msg.priority = step.priority
         self._publisher.publish(msg)

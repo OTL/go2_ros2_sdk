@@ -2,16 +2,18 @@
   ros__parameters:
     joystick_actions:
       buttons:
-        0:
-          sequence:
-            - StandUp
-            - BalanceStand
-        1:
-          command: StandDown
+#        0:
+#          sequence:
+#            - StandUp
+#            - BalanceStand
+#        1:
+#          command: StandDown
         2:
-          sequence:
-            - BalanceStand
-            - BackFlip
+          command: "BackFlip"
+#          parameter: '{ "data": true}'
+#          sequence:
+#            - BalanceStand
+#            - BackFlip
         3:
           sequence:
             - BalanceStand
