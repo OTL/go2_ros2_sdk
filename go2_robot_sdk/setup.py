@@ -37,6 +37,7 @@ setup(
     entry_points={
         'console_scripts': [
             'go2_driver_node = go2_robot_sdk.main:main',
+            'go2_joystick_actions_node = go2_robot_sdk.application.go2_joystick_actions_node:main',
         ],
     },
 )

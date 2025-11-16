@@ -63,6 +63,7 @@ class Go2LaunchConfig:
         """Get all configuration file paths"""
         return {
             'joystick': os.path.join(self.package_dir, 'config', 'joystick.yaml'),
+            'joystick_actions': os.path.join(self.package_dir, 'config', 'joystick_actions.yaml'),
             'twist_mux': os.path.join(self.package_dir, 'config', 'twist_mux.yaml'),
             'slam': os.path.join(self.package_dir, 'config', 'mapper_params_online_async.yaml'),
             'nav2': os.path.join(self.package_dir, 'config', 'nav2_params.yaml'),
@@ -246,6 +247,15 @@ class Go2NodeFactory:
                 condition=IfCondition(with_joystick),
                 parameters=[self.config.config_paths['joystick']]
             ),
+            # Joystick action mapper
+            Node(
+                package='go2_robot_sdk',
+                executable='go2_joystick_actions_node',
+                name='go2_joystick_actions_node',
+                condition=IfCondition(with_joystick),
+                parameters=[self.config.config_paths['joystick_actions']],
+                output='screen',
+            ),
             # Teleop twist joy node
             Node(
                 package='teleop_twist_joy',
@@ -305,8 +315,10 @@ class Go2NodeFactory:
             # SLAM Toolbox
             IncludeLaunchDescription(
                 PythonLaunchDescriptionSource([
-                    os.path.join(get_package_share_directory('slam_toolbox'),
-                                'launch', 'online_async_launch.py')
+                    os.path.join(
+                        get_package_share_directory('slam_toolbox'),
+                        'launch', 'online_async_launch.py'
+                    )
                 ]),
                 condition=IfCondition(with_slam),
                 launch_arguments={
@@ -317,8 +329,10 @@ class Go2NodeFactory:
             # Nav2
             IncludeLaunchDescription(
                 PythonLaunchDescriptionSource([
-                    os.path.join(get_package_share_directory('nav2_bringup'),
-                                'launch', 'navigation_launch.py')
+                    os.path.join(
+                        get_package_share_directory('nav2_bringup'),
+                        'launch', 'navigation_launch.py'
+                    )
                 ]),
                 condition=IfCondition(with_nav2),
                 launch_arguments={

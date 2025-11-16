@@ -1,4 +1,4 @@
-/go2_driver_node:
+/go2_joystick_actions_node:
   ros__parameters:
     joystick_actions:
       buttons:
