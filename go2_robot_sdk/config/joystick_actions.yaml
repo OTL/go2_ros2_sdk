@@ -1,0 +1,22 @@
+/go2_driver_node:
+  ros__parameters:
+    joystick_actions:
+      buttons:
+        0:
+          sequence:
+            - StandUp
+            - BalanceStand
+        1:
+          command: StandDown
+        2:
+          sequence:
+            - BalanceStand
+            - BackFlip
+        3:
+          sequence:
+            - BalanceStand
+            - FrontFlip
+        4:
+          sequence:
+            - BalanceStand
+            - LeftFlip

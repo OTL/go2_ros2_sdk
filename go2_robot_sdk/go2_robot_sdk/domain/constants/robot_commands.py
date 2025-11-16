@@ -45,6 +45,9 @@ ROBOT_CMD = {
     "EconomicGait": 1035,
     "FingerHeart": 1036,
     "StandOut": 1039,
+    "LeftFlip": 1042,
+    "RightFlip": 1043,
+    "BackFlip": 1044,
     "FreeWalk": 1045,
     "Standup": 1050,
     "CrossWalk": 1051,
@@ -53,4 +56,4 @@ ROBOT_CMD = {
     "OnesidedStep": 1303,
     "CrossStep": 1302,
     "Handstand": 1301,
-} 
+}
