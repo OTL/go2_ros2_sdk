@@ -217,7 +217,7 @@ class Go2JoystickActionsNode(Node):
         msg = WebRtcReq()
         msg.id = 0
         msg.api_id = step.api_id
-        #msg.parameter = step.parameter
+        msg.parameter = step.parameter
         msg.topic = step.topic
         msg.priority = step.priority
         self._publisher.publish(msg)
